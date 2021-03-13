@@ -6,6 +6,7 @@ authors = ["Th3B0Y <constantlychanging@pm.me>"]
 license = "MIT"
 keywords = ["iota", "smart-contract", "smart contract","hname"]
 edition = "2018"
+repository = "https://github.com/brunoamancio/IOTA-SC-HName-Generator/"
 
 [lib]
 proc-macro = true
