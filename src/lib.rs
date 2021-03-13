@@ -47,7 +47,7 @@ fn calculate_blake2b_hash(data_string : &str) -> u32{
         if are_first_4_bytes_zero {
             hname_bytes = &hname_bytes[4..8]
         }
-        result = u32::from_le_bytes(hname_bytes.try_into().expect("msg"));
+        result = u32::from_le_bytes(hname_bytes.try_into().expect("could not convert bytes to little endian u32"));
     });
     return result;
 }

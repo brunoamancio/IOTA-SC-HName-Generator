@@ -4,7 +4,7 @@
 
 IOTA Smart contract require developers to generate hashes for smart contract functions and views, as well as for parameter and variable names. 
 
-They are used to be passed as argument to calls to other function in the same smart contract and other smart contract functions and views.
+They are used to be passed as argument to calls to other functions in the same smart contract and other smart contract functions and views.
 
 The usage is very simple. For example, if your smart contract has the function below:
 
