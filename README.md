@@ -1,3 +1,5 @@
+[![Actions Status](https://github.com/brunoamancio/IOTA-SC-HName-Generator/workflows/Build%20and%20test/badge.svg)](https://github.com/{user}/{repo}/actions)
+
 # Hash generator for IOTA Smart contracts
 
 IOTA Smart contract require developers to generate hashes for smart contract functions and views, as well as for parameter and variable names. 
