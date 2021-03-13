@@ -1,5 +1,5 @@
 [package]
-name = "hname_generator"
+name = "iota-sc-hname-generator"
 version = "1.0.0"
 description = "Generates hashes for function, parameter,and variable names necessary to work with IOTA Smart contracts"
 authors = ["Th3B0Y <constantlychanging@pm.me>"]
@@ -8,7 +8,6 @@ keywords = ["iota", "smart-contract", "smart contract","hname"]
 edition = "2018"
 repository = "https://github.com/brunoamancio/IOTA-SC-HName-Generator/"
 categories = ["cryptography::cryptocurrencies", "algorithms", "development-tools"]
-publish = ["iota-sc-hname-generator"]
 
 [lib]
 proc-macro = true
