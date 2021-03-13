@@ -2,12 +2,24 @@ extern crate proc_macro;
 extern crate syn;
 
 #[proc_macro]
-/// Calculates hash of the property it is assigned to and generates a constant: 
-/// "pub const HNAME_<PROPERTY NAME> : wasmlib::ScHname = wasmlib::ScHname(<calculated hash>);"
-// Usage: pub const HNAME_<PROPERTY NAME> : wasmlib::ScHname = generate_hname!("name");
-pub fn generate_hname(input: proc_macro::TokenStream) -> proc_macro::TokenStream {
+/// Calculates hash of the input string and generates the output: 
+/// "wasmlib::ScHname(<calculated hash>);"
+/// Usage: pub const HNAME_<PROPERTY NAME> : wasmlib::ScHname = generate_schname!("name");
+pub fn generate_schname(input: proc_macro::TokenStream) -> proc_macro::TokenStream {
     let input_string = get_input_string(input);
-    generate_output_tokenstream(&input_string)
+    let calculated_hash = calculate_hash_from_input(&input_string);
+    generate_output_schname_tokenstream(calculated_hash)
+}
+
+/// Calculates hash of the input string and generates the output:
+/// "0x123ABC"
+/// Usage1: pub const hash_name : u32 = calculate_hash!("name")
+/// Usage2: enum MyEnum { Hash_Name = calculate_hash!("fairroulette"); }
+#[proc_macro]
+pub fn calculate_hash(input: proc_macro::TokenStream) -> proc_macro::TokenStream {
+    let input_string = get_input_string(input);
+    let calculated_hash = calculate_hash_from_input(&input_string);
+    generate_output_u32_tokenstream(calculated_hash)
 }
 
 fn get_input_string(input: proc_macro::TokenStream) -> String {
@@ -20,11 +32,24 @@ fn get_input_string(input: proc_macro::TokenStream) -> String {
     String::from(string_arg.trim_matches('\"'))
 }
 
-fn generate_output_tokenstream(input: &str) -> proc_macro::TokenStream {
+fn calculate_hash_from_input(input: &str) -> u32{
     let input_string = input.to_string();
     let calculated_hash = calculate_blake2b_hash(&input_string);
+    calculated_hash
+}
+
+fn generate_output_schname_tokenstream(calculated_hash : u32) -> proc_macro::TokenStream {
     let expanded = quote::quote! {
         wasmlib::ScHname(#calculated_hash)
+    };
+
+    let output = proc_macro::TokenStream::from(expanded);
+    output
+}
+
+fn generate_output_u32_tokenstream(calculated_hash : u32) -> proc_macro::TokenStream {
+    let expanded = quote::quote! {
+        #calculated_hash
     };
 
     let output = proc_macro::TokenStream::from(expanded);
