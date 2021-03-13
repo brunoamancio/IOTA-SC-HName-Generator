@@ -1,4 +1,4 @@
-[![Actions Status](https://github.com/brunoamancio/IOTA-SC-HName-Generator/workflows/Build%20and%20test/badge.svg)](https://github.com/{user}/{repo}/actions)
+[![Actions Status](https://github.com/brunoamancio/IOTA-SC-HName-Generator/workflows/Build%20and%20test/badge.svg)](https://github.com/brunoamancio/IOTA-SC-HName-Generator/actions)
 
 # Hash generator for IOTA Smart contracts
 
