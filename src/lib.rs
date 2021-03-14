@@ -2,17 +2,15 @@ extern crate proc_macro;
 extern crate syn;
 
 #[proc_macro]
-/// Calculates hash of the input string and generates the output: 
-/// "wasmlib::ScHname(<calculated hash>);"
-/// Usage: pub const HNAME_<PROPERTY NAME> : wasmlib::ScHname = generate_schname!("name");
+/// Calculates hash of the input string and generates the output: "ScHname(<calculated hash>);"
+/// Usage: pub const HNAME_<PROPERTY NAME> : ScHname = generate_schname!("name");
 pub fn generate_schname(input: proc_macro::TokenStream) -> proc_macro::TokenStream {
     let input_string = get_input_string(input);
     let calculated_hash = calculate_hash_from_input(&input_string);
     generate_output_schname_tokenstream(calculated_hash)
 }
 
-/// Calculates hash of the input string and generates the output:
-/// "0x123ABC"
+/// Calculates hash of the input string and generates the output: "0x123ABC"
 /// Usage1: pub const hash_name : u32 = calculate_hash!("name")
 /// Usage2: enum MyEnum { Hash_Name = calculate_hash!("fairroulette"); }
 #[proc_macro]
@@ -40,7 +38,7 @@ fn calculate_hash_from_input(input: &str) -> u32{
 
 fn generate_output_schname_tokenstream(calculated_hash : u32) -> proc_macro::TokenStream {
     let expanded = quote::quote! {
-        wasmlib::ScHname(#calculated_hash)
+        ScHname(#calculated_hash)
     };
 
     let output = proc_macro::TokenStream::from(expanded);
