@@ -104,4 +104,13 @@ mod tests {
         let result = calculate_blake2b_hash("donatewithfeedback");
         assert_eq!(0x696d7f66, result);
     }
+
+    #[test]
+    fn tip_100() {
+        let expected = 0xeae53bfb_u32;
+        let result = calculate_blake2b_hash("implements(ScHname,ScHname)->bool");
+        println!("{:#x}", expected);
+        println!("{:#x}", result);
+        assert_eq!(expected, result);
+    }
 }
