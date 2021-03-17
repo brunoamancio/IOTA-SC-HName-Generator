@@ -6,6 +6,8 @@ IOTA Smart contract require developers to generate hashes for smart contract fun
 
 They are used to be passed as argument to calls to other functions in the same smart contract and other smart contract functions and views.
 
+With this generator uses procedural macros so you can pre-generate your hashes (in compile-time) to ensure no calculations is necessary in runtime.
+
 The usage is very simple. For example, if your smart contract has the function below:
 
 `samplecontract.rs`
@@ -22,10 +24,10 @@ You can set your constants and generate their hashes with:
 pub const MY_SC_FUNCTION : &str = "my_sc_function";
 
 // Here is the HNAME generation. The output type is ScHName.
-pub const HNAME_MY_SC_FUNCTION_1 : wasmlib::ScHname  = generate_schname!("my_sc_function");
+pub const HNAME_MY_SC_FUNCTION_1 : ScHname  = iota_sc_hname_generator::generate_schname!("my_sc_function");
 
-// Here is the HNAME generation. The output type is u32.
-pub const HNAME_MY_SC_FUNCTION_2 : wasmlib::ScHname = wasmlib::ScHname(iota_sc_hname_generator::calculate_hash!("aa"));
+// Here is the HASH generation. The output type is u32.
+pub const HNAME_MY_SC_FUNCTION_2 : ScHname = ScHname(iota_sc_hname_generator::generate_hash!("aa"));
 ```
 
 No need to manually generate hashes and hardcode them.
