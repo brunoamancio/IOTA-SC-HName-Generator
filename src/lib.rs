@@ -2,8 +2,11 @@ extern crate proc_macro;
 extern crate syn;
 
 #[proc_macro]
-/// Calculates hash of the input string and generates the output: "ScHname(<calculated hash>);"
-/// Usage: pub const HNAME_<PROPERTY NAME> : ScHname = generate_schname!("name");
+/// Calculates hash of the input string and generates the output: "ScHname(<generated hash>);"
+/// # Usage: 
+/// ```no_run
+/// pub const HNAME_PROPERTY : ScHname = generate_schname!("property");
+/// ```
 pub fn generate_schname(input: proc_macro::TokenStream) -> proc_macro::TokenStream {
     let input_string = get_input_string(input);
     let calculated_hash = calculate_hash_from_input(&input_string);
@@ -11,10 +14,16 @@ pub fn generate_schname(input: proc_macro::TokenStream) -> proc_macro::TokenStre
 }
 
 /// Calculates hash of the input string and generates the output: "0x123ABC"
-/// Usage1: pub const hash_name : u32 = calculate_hash!("name")
-/// Usage2: enum MyEnum { Hash_Name = calculate_hash!("fairroulette"); }
+/// # Usage 1: 
+/// ```no_run
+/// pub const hash_name : u32 = generate_hash!("name");
+/// ```
+/// # Usage 2: 
+/// ```no_run
+/// enum MyEnum { Hash_Name = generate_hash!("fairroulette"); }
+/// ```
 #[proc_macro]
-pub fn calculate_hash(input: proc_macro::TokenStream) -> proc_macro::TokenStream {
+pub fn generate_hash(input: proc_macro::TokenStream) -> proc_macro::TokenStream {
     let input_string = get_input_string(input);
     let calculated_hash = calculate_hash_from_input(&input_string);
     generate_output_u32_tokenstream(calculated_hash)
@@ -105,10 +114,7 @@ mod tests {
 
     #[test]
     fn tip_100() {
-        let expected = 0xeae53bfb_u32;
         let result = calculate_blake2b_hash("implements(ScHname,ScHname)->bool");
-        println!("{:#x}", expected);
-        println!("{:#x}", result);
-        assert_eq!(expected, result);
+        assert_eq!(0xeae53bfb_u32, result);
     }
 }
