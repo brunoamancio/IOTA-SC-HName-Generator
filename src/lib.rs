@@ -2,7 +2,7 @@ extern crate proc_macro;
 extern crate syn;
 
 #[proc_macro]
-/// Calculates hash of the input string and generates the output: "ScHname(<generated hash>);"
+/// Calculates hash of the input string and generates the output: "ScHname(\<generated hash\>);"
 /// # Usage: 
 /// ```no_run
 /// pub const HNAME_PROPERTY : ScHname = generate_schname!("property");
