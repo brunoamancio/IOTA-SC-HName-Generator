@@ -4,7 +4,7 @@ extern crate syn;
 #[proc_macro]
 /// Calculates hash of the input string and generates the output: "ScHname(\<generated hash\>);"
 /// # Usage: 
-/// ```no_run
+/// ```ignore
 /// pub const HNAME_PROPERTY : ScHname = generate_schname!("property");
 /// ```
 pub fn generate_schname(input: proc_macro::TokenStream) -> proc_macro::TokenStream {
@@ -15,11 +15,11 @@ pub fn generate_schname(input: proc_macro::TokenStream) -> proc_macro::TokenStre
 
 /// Calculates hash of the input string and generates the output: "0x123ABC"
 /// # Usage 1: 
-/// ```no_run
+/// ```ignore
 /// pub const hash_name : u32 = generate_hash!("name");
 /// ```
 /// # Usage 2: 
-/// ```no_run
+/// ```ignore
 /// enum MyEnum { Hash_Name = generate_hash!("fairroulette"); }
 /// ```
 #[proc_macro]
