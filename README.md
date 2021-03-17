@@ -22,10 +22,10 @@ You can set your constants and generate their hashes with:
 pub const MY_SC_FUNCTION : &str = "my_sc_function";
 
 // Here is the HNAME generation. The output type is ScHName.
-pub const HNAME_MY_SC_FUNCTION_1 : wasmlib::ScHname  = generate_schname!("my_sc_function");
+pub const HNAME_MY_SC_FUNCTION_1 : ScHname  = generate_schname!("my_sc_function");
 
 // Here is the HNAME generation. The output type is u32.
-pub const HNAME_MY_SC_FUNCTION_2 : wasmlib::ScHname = wasmlib::ScHname(iota_sc_hname_generator::calculate_hash!("aa"));
+pub const HNAME_MY_SC_FUNCTION_2 : ScHname = ScHname(iota_sc_hname_generator::calculate_hash!("aa"));
 ```
 
 No need to manually generate hashes and hardcode them.
