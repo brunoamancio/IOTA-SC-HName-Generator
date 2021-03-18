@@ -2,11 +2,11 @@
 
 # Hash generator for IOTA Smart contracts
 
-IOTA Smart contract require developers to generate hashes for smart contract functions and views, as well as for parameter and variable names. 
+IOTA Smart contracts require developers to generate hashes for smart contract functions and views, as well as for parameter and variable names. 
 
 They are used to be passed as argument to calls to other functions in the same smart contract and other smart contract functions and views.
 
-With this generator uses procedural macros so you can pre-generate your hashes (in compile-time) to ensure no calculations is necessary in runtime.
+This generator uses procedural macros so you can pre-generate your hashes in compile-time to ensure no calculations are necessary in runtime.
 
 The usage is very simple. For example, if your smart contract has the function below:
 
